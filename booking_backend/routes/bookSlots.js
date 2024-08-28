@@ -49,7 +49,7 @@ router.post('/fetchslotsbyhexcode',function(req, res, next){
   const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
   //moment(slot.bookDate).tz('Asia/Kolkata')
 
-  pool.query("select * from bookslots where hexcode=? AND bookDate >= ?",[req.body.hexcode,moment(today).tz('Asia/Kolkata').format('YYYY-MM-DD')],function(error,result){
+  pool.query("select * from bookslots where hexcode=? AND bookDate >= ? AND emailId=?",[req.body.hexcode,moment(today).tz('Asia/Kolkata').format('YYYY-MM-DD'),req.body.emailId],function(error,result){
       if(error)
           {
             res.status(500).json([])
