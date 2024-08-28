@@ -61,6 +61,23 @@ router.post('/fetchslotsbyhexcode',function(req, res, next){
   })
 })
 
+router.post('/fetchslotsbyhex',function(req, res, next){
+  const today = new Date();
+  const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
+  //moment(slot.bookDate).tz('Asia/Kolkata')
+
+  pool.query("select * from bookslots where hexcode=? AND bookDate >= ?",[req.body.hexcode,moment(today).tz('Asia/Kolkata').format('YYYY-MM-DD')],function(error,result){
+      if(error)
+          {
+            res.status(500).json([])
+          }
+      else
+          {
+            res.status(200).json({data:result})
+          }
+  })
+})
+
 router.post('/editslot', function(req, res, next) {
   // Validate user input (e.g., ensure password meets complexity requirements)
   // ... (validation logic)
