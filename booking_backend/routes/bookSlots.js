@@ -30,7 +30,7 @@ router.post('/fetchslotsbyid',function(req, res, next){
 })
 
 router.post('/insertdata',function(req,res,next){
-    pool.query("insert into bookslots (firstName,lastName,address,mobileno,bookDate,timeSlot,description,doctorId,hexcode) values(?,?,?,?,?,?,?,?,?)",[req.body.firstName,req.body.lastName,req.body.address,req.body.mobileno,req.body.bookDate,req.body.timeSlot,req.body.description,req.body.doctorId,req.body.hexcode],function(error,result){
+    pool.query("insert into bookslots (firstName,lastName,address,mobileno,bookDate,timeSlot,description,doctorId,hexcode,emailId) values(?,?,?,?,?,?,?,?,?,?)",[req.body.firstName,req.body.lastName,req.body.address,req.body.mobileno,req.body.bookDate,req.body.timeSlot,req.body.description,req.body.doctorId,req.body.hexcode,req.body.emailId],function(error,result){
         console.log(error);
         if(error)
             {
